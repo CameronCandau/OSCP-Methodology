@@ -78,14 +78,6 @@ Then continue domain enumeration:
 - Check PowerShell history on EVERY machine you access?
 - Test passwords found in history across all machines?
 
-## DO NOT ASSUME
-
-**Lessons from your Challenge Labs:**
-- ❌ "I tested on DC, don't need to test on MS01/MS02" → WRONG. Test everywhere
-- ❌ "I have domain user, that's enough" → WRONG. Kerberoast for service accounts
-- ❌ "Password doesn't work with domain auth" → Try `--local-auth` for local accounts
-- ❌ "I got access to one machine, done" → WRONG. Enumerate that machine, get more creds, repeat
-
 ## Reference
 
 For detailed AD methodology, see [[Active Directory]]

@@ -64,24 +64,6 @@
 - [ ] Check for additional unusual files/programs missed earlier
 - [ ] Review network interfaces: `ipconfig /all` → Pivoting needed?
 
-## Common Pitfalls
-
-**STOP and re-check if stuck for 15+ minutes:**
-- Did you check `whoami /priv` for SeImpersonate? (This is the #1 quick win)
-- Did you read PowerShell history for ALL users thoroughly?
-- Did you enumerate web directories if port 80/8000/8080 is open?
-- Did you check for databases and try to access them?
-- Did you search for .exe files and use `strings` on them?
-- Did you actually READ the WinPEAS output instead of skimming?
-
-## DO NOT ASSUME Patterns
-
-**Lessons from your Challenge Labs:**
-- ❌ "I have admin, don't need to enumerate more" → WRONG. Check history, mimikatz, files
-- ❌ "I ran autorecon, that's enough" → WRONG. Manually review feroxbuster output line-by-line
-- ❌ "No obvious web vulns, skip it" → WRONG. Look for exposed /DB, databases, config files
-- ❌ "I found one credential, done searching" → WRONG. Keep hunting for more
-
 ## Reference
 
 For detailed commands, see [[Windows Privilege Escalation]]
